@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+const baseurl = "https://popo-d4ih.onrender.com"
 
 export default class CreateExercise extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ export default class CreateExercise extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/users/')
+    axios.get(`${baseurl}/users/`)
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
@@ -74,7 +75,7 @@ export default class CreateExercise extends Component {
 
     console.log(exercise);
 
-    axios.post('http://localhost:3000/exercise/add', exercise)
+    axios.post(`${baseurl}/exercise/add`, exercise)
       .then(res => console.log(res.data));
 
     window.location = '/';

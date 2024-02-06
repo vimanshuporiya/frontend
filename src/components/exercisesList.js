@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+const baseurl = "https://popo-d4ih.onrender.com"
 const Exercise = props => (
   <tr>
     <td>{props.exercise.username}</td>
@@ -24,7 +24,7 @@ export default class ExercisesList extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/exercise/')
+    axios.get(`${baseurl}/exercise/`)
       .then(response => {
         this.setState({ exercises: response.data })
       })
@@ -34,7 +34,7 @@ export default class ExercisesList extends Component {
   }
 
   deleteExercise(id) {
-    axios.delete('http://localhost:3000/exercise/'+id)
+    axios.delete(`${baseurl}/exercise/`+id)
       .then(response => { console.log(response.data)});
 
     this.setState({

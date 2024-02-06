@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+const baseurl = "https://popo-d4ih.onrender.com"
 
 export default class EditExercise extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ console.log('props', this.props?.match?.params?.id)
   componentDidMount() {
     const path = window.location.pathname;
     const objectId = path.split('/').pop();
-    axios.get('http://localhost:3000/exercise/'+objectId)
+    axios.get(`${baseurl}/exercise/`+objectId)
       .then(response => {
         this.setState({
           username: response.data.username,
@@ -38,7 +39,7 @@ console.log('props', this.props?.match?.params?.id)
         console.log(error);
       })
 
-    axios.get('http://localhost:3000/users/')
+    axios.get(`${baseurl}/users/`)
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
@@ -89,7 +90,7 @@ console.log('props', this.props?.match?.params?.id)
     console.log(exercise);
     const path = window.location.pathname;
     const objectId = path.split('/').pop();
-    axios.post('http://localhost:3000/exercise/update/' +objectId, exercise)
+    axios.post(`${baseurl}/exercise/update/` +objectId, exercise)
       .then(res => console.log(res.data));
 
     window.location = '/';

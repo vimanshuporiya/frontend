@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+const baseurl = "https://popo-d4ih.onrender.com"
 
 export default class CreateUser extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class CreateUser extends Component {
 
     console.log(user);
 
-    axios.post('http://localhost:3000/users/add', user)
+    axios.post(`${baseurl}/exercise/users/add`, user)
       .then(res => console.log(res.data));
 
     this.setState({
